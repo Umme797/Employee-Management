@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+{% load static %}
+
+
+<div class="container-fluid mt-5">
+
+
+    <div class="row">
+
+
+        <!-- Sidebar -->
+        <div class="col-md-2" style="display: flex; flex-direction: column;">
+
+
+            <div class="card flex-grow-1">
+
+
+                <div class="card-header">
+                    <h5>Side Menu</h5>
+                </div>
+
+
+                <div class="card-body" style="overflow-y: auto;">
+
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <a href="{% url 'department_dashboard' %}" class="nav-link">
+                                Department
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'role_dashboard' %}" class="nav-link">
+                                Role
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'employee_dashboard' %}" class="nav-link">
+                                Employee
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Main Content -->
+        <div class="col-md-10" id="content" style="padding: 20px;">
+
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <button class="btn btn-success">
+                    <a href="/create_employee" class="text-white text-decoration-none">
+                        Create Employee
+                    </a>
+                </button>
+
+            </div>
+
+
+            <br>
+
+
+            <table 
+                style="
+                    width: 100%; 
+                    border-collapse: collapse;
+                "
+            >
+
+
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Sr. no
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            First Name
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Last Name
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Email
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Mobile
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Department
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Role
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Reporting Manager
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Username
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Password
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Edit
+                        </th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    {% for e in employees %}
+
+                    <tr>
+
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ forloop.counter }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.first_name }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.last_name }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.email }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.mobile }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.dept_id }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.role_id }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.reporting_manager.first_name }} {{ e.reporting_manager.last_name }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {{ e.username }}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            {% if e.password|length > 10 %} 
+                                {{ e.password|slice:":10" }}...
+                            {% else %}
+                                {{ e.password }}
+                            {% endif %}
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            <button class="btn btn-warning">
+                                <a href="/update_employee/{{ e.employee_id }}" class="btn btn-warning">Edit</a>  {# Add btn class to <a> #}
+                            </button>
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 10px;">
+                            <button class="btn btn-danger">
+                                <a href="/delete_employee/{{ e.employee_id }}" class="btn btn-danger">Delete</a>  {# Add btn class to <a> #}
+                            </button>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+{% endblock 'main' %}

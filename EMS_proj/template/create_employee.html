@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+
+
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
+
+
+        <h1>Add Employee</h1>
+
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+
+            <!--First Name-->
+            <div class="form-group">
+                <label for="efname">First Name</label>
+                <input type="text" class="form-control" id="efname" name="efname" placeholder="First Name">
+            </div>
+
+            <br>
+
+            <!--Last Name-->
+            <div class="form-group">
+                <label for="elname">Last Name</label>
+                <input type="text" class="form-control" id="elname" name="elname" placeholder="Last Name">
+            </div>
+
+            <br>
+
+            <!--Email-->
+            <div class="form-group">
+                <label for="eemail">Email</label>
+                <input type="email" class="form-control" id="eemail" name="eemail" placeholder="Email">
+            </div>
+
+            <br>
+
+            <!--Mobile-->
+            <div class="form-group">
+                <label for="emobile">Mobile Number</label>
+                <input type="tel" class="form-control" id="emobile" name="emobile" placeholder="Mobile Number">
+            </div>
+
+            <br>
+
+            <!--Role-->
+            <div class="form-group">
+                <label for="erole">Select Role</label>
+                <select class="form-control" id="erole" name="erole">
+                    <option value="">Select Role</option>
+                    {% for role in roles %}
+                    <option value="{{ role.role_name }}">{{ role.role_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <br>
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="edepartment">Select Department</label>
+                <select class="form-control" id="edepartment" name="edepartment">
+                    <option value="">Select Department</option>
+                    {% for department in departments %}
+                    <option value="{{ department.name }}">{{ department.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br>
+
+            <!-- Manager -->
+            <div class="form-group">
+                <label for="emanager">Reporting Manager</label>
+                <select class="form-control" id="emanager" name="emanager">
+                    <option value="">Select Manager</option>
+                    {% for manager in managers %}
+                    <option value="{{ manager.email }}">{{ manager.first_name }} {{ manager.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <br>
+
+            <!-- Joining Date -->
+            <div class="form-group">
+                <label for="ejoiningDate">Date of Joining</label>
+                <input type="date" class="form-control" id="ejoiningDate" name="ejoiningDate">
+            </div>
+
+            <br>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="eusername">Username</label>
+                <input type="text" class="form-control" id="eusername" name="eusername" placeholder="Username">
+            </div>
+
+            <br>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="epass">Set Password</label>
+                <input type="password" class="form-control" id="epass" name="epass" placeholder="Password">
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">
+                Add Employee
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock 'main' %}

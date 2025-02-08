@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+{% load static %}
+
+
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+
+
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
+
+
+        <h1>Update Employee</h1>
+
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+
+            <!--First Name-->
+            <div class="form-group">
+                <label for="efname">First Name</label>
+                <input type="text" class="form-control" name="efname" id="efname" value="{{ employee.first_name }}">
+            </div>
+
+            <br>
+
+            <!--Last Name-->
+            <div class="form-group">
+                <label for="elname">Last Name</label>
+                <input type="text" class="form-control" name="elname" id="elname" value="{{ employee.last_name }}">
+            </div>
+
+            <br>
+
+            <!--Email-->
+            <div class="form-group">
+                <label for="eemail">Email</label>
+                <input type="email" class="form-control" name="eemail" id="eemail" value="{{ employee.email }}">
+            </div>
+
+            <br>
+
+            <!--Mobile-->
+            <div class="form-group">
+                <label for="emobile">Mobile Number</label>
+                <input type="text" class="form-control" name="emobile" id="emobile" value="{{ employee.mobile }}">
+            </div>
+
+            <br>
+
+            <!--Role-->
+            <div class="form-group">
+                <label for="erole">Select Role</label>
+                <select class="form-control" id="erole" name="erole">
+                    <option value="">Select Role</option>
+                    {% for role in roles %}
+                    <option value="{{ role.role_id }}" {% if role.role_id == selected_role %}selected{% endif %}>
+                        {{ role.role_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <br>
+
+            <!-- Department -->
+            <div class="form-group">
+                <label for="edepartment">Select Department</label>
+                <select class="form-control" id="edepartment" name="edepartment">
+                    <option value="">Select Department</option>
+                    {% for department in departments %}
+                    <option value="{{ department.name }}" {% if department.name == selected_department %}selected{% endif %}>
+                        {{ department.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br>
+
+            <!-- Manager -->
+            <div class="form-group">
+                <label for="emanager">Reporting Manager</label>
+                <select class="form-control" id="emanager" name="emanager">
+                    <option value="">Select Manager</option>
+                    {% for manager in managers %}
+                    <option value="{{ manager.email }}" {% if manager.email == selected_manager %}selected{% endif %}>
+                        {{ manager.first_name }} {{ manager.last_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <br>
+
+            <!-- Joining Date -->
+            <div class="form-group">
+                <label for="ejoiningDate">Date of Joining</label>
+                <input type="date" class="form-control" id="ejoiningDate" name="ejoiningDate"
+                    value="{{ employee.date_of_joining }}">
+            </div>
+
+            <br>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="eusername">Username</label>
+                <input type="text" class="form-control" name="eusername" id="eusername" value="{{ employee.username }}">
+            </div>
+
+            <br>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="epass">Set Password</label>
+                <input type="password" class="form-control" id="epass" name="epass"
+                    placeholder="Leave blank to keep current password">
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">
+                Update Employee
+            </button>
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock 'main' %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
+        <h1 class="text-center mb-4">Role Creation</h1>
+
+        <!-- Form -->
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <!-- Role Name -->
+            <div class="mb-3">
+                <label for="rname" class="form-label">Role Name:</label>
+                <input type="text" class="form-control" id="rname" name="rname" placeholder="Enter department name">
+            </div>
+
+            <!-- Role Description -->
+            <div class="mb-3">
+                <label for="rdesc" class="form-label">Role Description:</label>
+                <input type="text" class="form-control" id="rdesc" name="rdesc"
+                    placeholder="Enter department description">
+            </div>
+
+            <!-- Button -->
+            <div>
+                <button type="submit" class="btn btn-primary">Create Role</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock 'main' %}

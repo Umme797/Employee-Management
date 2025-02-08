@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<div class="container d-flex justify-content-center align-items-center mt-5">
+
+
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
+
+
+        <h1 class="text-center mb-4">Register</h1>
+
+
+        {% if errmsg %}
+        <div class="alert alert-danger">
+            {{ errmsg }}
+        </div>
+        {% endif %}
+
+
+        {% if successmsg %}
+        <div class="alert alert-success">
+            {{ successmsg }}
+        </div>
+        {% endif %}
+
+
+        <!-- Form -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="uname" class="form-label">Username:</label>
+                <input type="text" class="form-control" id="uname" name="uname">
+            </div>
+
+
+            <!-- EmailID -->
+            <div class="mb-3">
+                <label for="uemail" class="form-label">Email ID:</label>
+                <input type="email" class="form-control" id="uemail" name="uemail">
+            </div>
+
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="upass" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="upass" name="upass">
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <label for="ucpass" class="form-label">Confirm Password:</label>
+                <input type="password" class="form-control" id="ucpass" name="ucpass">
+            </div>
+
+
+            <!-- Button -->
+            <div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+{% endblock 'main' %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+
+    <div class="card p-4" style="max-width: 600px; width: 100%;">
+
+        <h1 class="text-center mb-4">Create Department</h1>
+
+        <!-- Form -->
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <!-- Department Name -->
+            <div class="mb-3">
+                <label for="dname" class="form-label">Department Name:</label>
+                <input type="text" class="form-control" id="dname" name="dname" placeholder="Enter department name">
+            </div>
+
+            <!-- Department Description -->
+            <div class="mb-3">
+                <label for="ddesc" class="form-label">Department Description:</label>
+                <input type="text" class="form-control" id="ddesc" name="ddesc"
+                    placeholder="Enter department description">
+            </div>
+
+            <!-- Button -->
+            <div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock 'main' %}
+
